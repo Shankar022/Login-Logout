@@ -40,10 +40,14 @@ const Login = (props) => {
         isValid: null
     });
 
+    const {isValid: emailIsValid} = emailState;
+    const {isValid: passwordIsValid} = passwordState;
+
+
     useEffect(() => {
         const identifier = setTimeout(() => {
             setFormIsValid(
-                emailState.value.includes('@') && passwordState.value.trim().length > 6
+                emailIsValid && passwordIsValid
             );
         }, 500);
 
@@ -52,7 +56,7 @@ const Login = (props) => {
             clearTimeout(identifier);
         }
 
-    }, [emailState, passwordState])
+    }, [emailIsValid, passwordIsValid])
 
     const emailChangeHandler = (event) => {
         //setEnteredEmail(event.target.value);
